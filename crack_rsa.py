@@ -122,7 +122,7 @@ if __name__ == "__main__":
     # Write the private key to the file
     with open("cracked_private_key.txt", "w") as file:
         file.write(str(n) + "\n")
-        file.write(str(d))
+        file.write(str(d) + "\n")
 
     print("Private key written to cracked_private_key.txt.")
     print("Done.")

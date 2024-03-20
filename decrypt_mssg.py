@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     # The encrypted message
     with open("encrypted_message.txt", "r") as file:
-        c = [int(x) for x in file.readline()[1:-1].split(", ")]
+        c = [int(x) for x in file.readline()[1:-2].split(", ")]
 
     # Decrypt the message
     message = [decrypt(c[i], d, n) for i in range(len(c))]
@@ -68,3 +68,4 @@ if __name__ == "__main__":
 
     with open("decrypted_message.txt", "w") as file:
         file.write(message)
+        file.write("\n")

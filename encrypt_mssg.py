@@ -69,7 +69,6 @@ if __name__ == "__main__":
 
     # Convert the message to an integer list
     m = [string_to_int(message_char) for message_char in message]
-    print("m:", m)
 
     # Encrypt the message
     c = [encrypt(message_char, e, n) for message_char in m]
@@ -80,3 +79,4 @@ if __name__ == "__main__":
     # Write the encrypted message to a file
     with open("encrypted_message.txt", "w") as file:
         file.write(str(c))
+        file.write("\n")

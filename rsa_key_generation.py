@@ -119,10 +119,12 @@ if __name__ == "__main__":
         f.write(str(public_key[0]))
         f.write("\n")
         f.write(str(public_key[1]))
+        f.write("\n")
 
     with open("private_key.txt", "w") as f:
         f.write(str(private_key[0]))
         f.write("\n")
         f.write(str(private_key[1]))
+        f.write("\n")
 
     print("Keys saved in public_key.txt and private_key.txt")
