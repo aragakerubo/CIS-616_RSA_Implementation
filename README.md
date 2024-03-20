@@ -91,9 +91,9 @@ cd CIS-616_RSA_Implementation
 python rsa_key_generation.py 256
 ```
 
-4. Replace 256 with the desired key size (e.g., 256, 512, 1024, 2048).
+4. Replace `256` with the desired key size (e.g., 256, 512, 1024, 2048).
 
-5. The script will generate RSA keys and save them to public_key.txt and private_key.txt. It will also encrypt and decrypt a sample message.
+5. The script will generate RSA keys and save them to `public_key.txt` and `private_key.txt`. It will also encrypt and decrypt a sample message.
 
 ## Files
 
