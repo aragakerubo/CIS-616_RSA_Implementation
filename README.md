@@ -12,7 +12,7 @@ The RSA algorithm is a widely used asymmetric cryptographic algorithm invented b
 
 ## Process of key generation, encryption, and decryption
 
-### 1. Key Generation:
+### A. Key Generation:
 
 1. Choose two distinct prime numbers, p and q.
 2. Calculate n = p \* q (modulus). The length of n in bits is the key length.
@@ -21,13 +21,13 @@ The RSA algorithm is a widely used asymmetric cryptographic algorithm invented b
 5. Calculate d such that d \* e ≡ 1 (mod φ(n)); d will be the private exponent.
 6. The public key is (n, e) and the private key is (n, d).
 
-### 2. Encryption:
+### B. Encryption:
 
 1. Convert the message to an integer.
 2. Compute the ciphertext c = m^e (mod n). Note: The message m must be less than n.
 3. The ciphertext c is the encrypted message.
 
-### 3. Decryption:
+### C. Decryption:
 
 1. Compute the plaintext message m = c^d (mod n).
 
