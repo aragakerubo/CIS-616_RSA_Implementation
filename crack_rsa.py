@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # This file contains the code for cracking the RSA keys.
 # Steps to crack RSA keys:
 # 1. Factorize n to get p and q.

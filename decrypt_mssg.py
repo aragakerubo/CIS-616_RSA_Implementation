@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # This file contains the code for decrypting a message using the RSA algorithm.
 # Steps to decrypt a message:
 # 1. Compute the plaintext message m = c^d (mod n),

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # This file contains the code for generating the RSA keys.
 # Steps to generate RSA keys:
 # 1. Choose two distinct prime numbers, p and q.

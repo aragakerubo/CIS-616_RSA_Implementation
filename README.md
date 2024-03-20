@@ -64,3 +64,73 @@ Here are the general steps involved in attempting to crack RSA encryption:
 
 -   Store private keys securely and use them only when necessary.
 -   Regularly update keys and algorithms to ensure security against evolving threats.
+
+## Instructions
+
+### Requirements
+
+-   Python 3.x
+
+### Usage
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/aragakerubo/CIS-616_RSA_Implementation.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd CIS-616_RSA_Implementation
+```
+
+3. Run the script with the desired key size (in bits):
+
+```bash
+python rsa_key_generation.py 256
+```
+
+4. Replace 256 with the desired key size (e.g., 256, 512, 1024, 2048).
+
+5. The script will generate RSA keys and save them to public_key.txt and private_key.txt. It will also encrypt and decrypt a sample message.
+
+## Files
+
+-   `rsa_key_generation.py`: The main Python script that generates RSA keys, encrypts, and decrypts messages.
+-   `encrypt_mssg.py`: Python script to encrypt a message using the public key.
+-   `decrypt_mssg.py`: Python script to decrypt a message using the private key.
+-   `crack_rsa.py`: Python script to crack RSA encryption by factorizing the modulus.
+-   `public_key.txt`: The file where the public key (n, e) is saved.
+-   `private_key.txt`: The file where the private key (n, d) is saved.
+-   `cracked_private_key.txt`: The file where the cracked private key (n, e) is saved.
+
+## Example
+
+Here's an example of how to use the RSA implementation:
+
+1. Run `crack_rsa.py` to generate RSA keys with a key size of 256 bits.
+
+```bash
+./crack_rsa.py 256
+```
+
+2. To encrypt a sample message with the newly generated public key, run `encrypt_mssg.py`.
+
+```bash
+./encrypt_mssg.py "Hello, World!"
+```
+
+3. To decrypt the encrypted message, run `decrypt_mssg.py`.
+
+```bash
+./decrypt_mssg.py
+```
+
+4. To attempt to crack RSA encryption by factorizing the modulus from the public key, run `crack_rsa.py`.
+
+```bash
+./crack_rsa.py
+```
+
+This command sequence will generate RSA keys with a key size of 256 bits, encrypt a message, decrypt the encrypted message, and attempt to crack RSA encryption.

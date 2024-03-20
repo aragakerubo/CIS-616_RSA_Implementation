@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # This file contains the code for encrypting a message using the RSA algorithm.
 # Steps to encrypt a message:
 # 1. Convert the message to an integer.
@@ -9,6 +11,9 @@
 
 # Note: Be sure to choose a sufficiently large key size such that the message m is less than n.
 # Assuming we have the message m in ASCII format, n must be greater than 255 (2^8) to encrypt a single character.
+
+# Import the sys module
+import sys
 
 
 # Function to encrypt a message
@@ -60,7 +65,7 @@ if __name__ == "__main__":
         e = int(file.readline())
 
     # The message to encrypt
-    message = "Hello, world!"
+    message = sys.argv[1]
 
     # Convert the message to an integer list
     m = [string_to_int(message_char) for message_char in message]
