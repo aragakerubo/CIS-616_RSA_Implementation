@@ -24,18 +24,6 @@ def decrypt(c, d, n):
     return int_to_string(m)
 
 
-# Function to convert a string to an integer
-def string_to_int(s):
-    """
-    Convert a string to an integer.
-    Args:
-        s (str): The string to convert.
-    Returns:
-        int: The integer.
-    """
-    return int.from_bytes(s.encode(), "big")
-
-
 # Function to convert an integer to a string
 def int_to_string(n):
     """

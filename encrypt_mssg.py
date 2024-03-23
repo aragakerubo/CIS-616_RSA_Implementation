@@ -43,18 +43,6 @@ def string_to_int(s):
     return int.from_bytes(s.encode(), "big")
 
 
-# Function to convert an integer to a string
-def int_to_string(n):
-    """
-    Convert an integer to a string.
-    Args:
-        n (int): The integer to convert.
-    Returns:
-        str: The string.
-    """
-    return n.to_bytes((n.bit_length() + 7) // 8, "big").decode()
-
-
 # Main function
 if __name__ == "__main__":
     # The public key (n, e)
