@@ -109,10 +109,10 @@ python rsa_key_generation.py 256
 
 Here's an example of how to use the RSA implementation:
 
-1. Run `crack_rsa.py` to generate RSA keys with a key size of 256 bits.
+1. Run `rsa_key_generation.py` to generate RSA keys with a key size of 256 bits.
 
 ```bash
-./crack_rsa.py 256
+./rsa_key_generation.py 256
 ```
 
 2. To encrypt a sample message with the newly generated public key, run `encrypt_mssg.py`.
