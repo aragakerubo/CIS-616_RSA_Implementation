@@ -8,6 +8,8 @@
 # 2. Convert the integer m to a string.
 # 3. The string is the decrypted message.
 
+import base64
+
 
 # Function to decrypt a message
 def decrypt(c, d, n):
@@ -40,9 +42,20 @@ def int_to_string(n):
 if __name__ == "__main__":
     # The private key (n, d)
     # Read the private key from the file
-    with open("private_key.txt", "r") as file:
-        n = int(file.readline())
-        d = int(file.readline())
+    with open("private_key.pem", "r") as file:
+        public_key = file.read().splitlines()
+
+        # Get the modulus and the private exponent
+        n = public_key[1]
+        d = public_key[2]
+
+        # Decode the base64 strings
+        n = base64.b64decode(n)
+        d = base64.b64decode(d)
+
+        # Convert bytes to integers
+        n = int.from_bytes(n, byteorder="big")
+        d = int.from_bytes(d, byteorder="big")
 
     # The encrypted message
     with open("encrypted_message.txt", "r") as file:

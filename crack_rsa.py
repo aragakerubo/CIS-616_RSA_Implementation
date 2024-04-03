@@ -11,6 +11,7 @@
 # 5. The public key is (n, e) and the private key is (n, d).
 
 import math
+import base64
 import sys
 
 
@@ -108,9 +109,20 @@ def crack_rsa(n, e):
 if __name__ == "__main__":
     # The public key (n, e)
     # Read the public key from the file
-    with open("public_key.txt", "r") as file:
-        n = int(file.readline())
-        e = int(file.readline())
+    with open("public_key.pem", "r") as file:
+        public_key = file.read().splitlines()
+
+        # Get the modulus and the public exponent
+        n = public_key[1]
+        e = public_key[2]
+
+        # Decode the base64 strings
+        n = base64.b64decode(n)
+        e = base64.b64decode(e)
+
+        # Convert bytes to integers
+        n = int.from_bytes(n, byteorder="big")
+        e = int.from_bytes(e, byteorder="big")
 
     # Crack the RSA keys
     phi, d, p, q = crack_rsa(n, e)
@@ -121,9 +133,20 @@ if __name__ == "__main__":
     print("d:", d)
 
     # Write the private key to the file
-    with open("cracked_private_key.txt", "w") as file:
-        file.write(str(n) + "\n")
-        file.write(str(d) + "\n")
+    with open("cracked_private_key.pem", "w") as file:
+        # Encode the modulus and exponent
+        modulus_bytes = n.to_bytes((n.bit_length() + 7) // 8, "big")
+        exponent_bytes = d.to_bytes((d.bit_length() + 7) // 8, "big")
+
+        # Encode the modulus and exponent in base64
+        modulus_b64 = base64.b64encode(modulus_bytes).decode()
+        exponent_b64 = base64.b64encode(exponent_bytes).decode()
+
+        # Write the encoded key to the file
+        file.write("-----BEGIN PRIVATE KEY-----\n")
+        file.write(f"{modulus_b64}\n")
+        file.write(f"{exponent_b64}\n")
+        file.write("-----END PRIVATE KEY-----")
 
     print("Private key written to cracked_private_key.txt.")
     print("Done.")

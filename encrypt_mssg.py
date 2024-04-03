@@ -14,6 +14,7 @@
 
 # Import the sys module
 import sys
+import base64
 
 
 # Function to encrypt a message
@@ -47,10 +48,20 @@ def string_to_int(s):
 if __name__ == "__main__":
     # The public key (n, e)
     # Read the public key from the file
+    with open("public_key.pem", "r") as file:
+        public_key = file.read().splitlines()
 
-    with open("public_key.txt", "r") as file:
-        n = int(file.readline())
-        e = int(file.readline())
+        # Get the modulus and the public exponent
+        n = public_key[1]
+        e = public_key[2]
+
+        # Decode the base64 strings
+        n = base64.b64decode(n)
+        e = base64.b64decode(e)
+
+        # Convert bytes to integers
+        n = int.from_bytes(n, byteorder="big")
+        e = int.from_bytes(e, byteorder="big")
 
     # The message to encrypt
     message = sys.argv[1]

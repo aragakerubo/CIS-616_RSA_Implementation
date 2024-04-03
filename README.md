@@ -10,6 +10,9 @@ The RSA algorithm is a widely used asymmetric cryptographic algorithm invented b
 2. **Private Key:** Used for decryption. It is derived from the same two large prime numbers and a private exponent.
 3. **Modulus:** The product of the two large prime numbers used in key generation. It is part of both the public and private keys.
 
+Note, it is standard practice to convert the keys to PEM format for storage and exchange.
+All keys generated will be given in Base64 format.
+
 ## Process of key generation, encryption, and decryption
 
 ### A. Key Generation:
@@ -93,7 +96,7 @@ python rsa_key_generation.py 256
 
 4. Replace `256` with the desired key size (e.g., 256, 512, 1024, 2048).
 
-5. The script will generate RSA keys and save them to `public_key.txt` and `private_key.txt`. It will also encrypt and decrypt a sample message.
+5. The script will generate RSA keys, encode them in Base 64 format, and save them to `public_key.pem` and `private_key.pem`. It will also encrypt and decrypt a sample message.
 
 ## Files
 
@@ -101,9 +104,9 @@ python rsa_key_generation.py 256
 -   `encrypt_mssg.py`: Python script to encrypt a message using the public key.
 -   `decrypt_mssg.py`: Python script to decrypt a message using the private key.
 -   `crack_rsa.py`: Python script to crack RSA encryption by factorizing the modulus.
--   `public_key.txt`: The file where the public key (n, e) is saved.
--   `private_key.txt`: The file where the private key (n, d) is saved.
--   `cracked_private_key.txt`: The file where the cracked private key (n, e) is saved.
+-   `public_key.pem`: The file where the public key (n, e) is saved.
+-   `private_key.pem`: The file where the private key (n, d) is saved.
+-   `cracked_private_key.pem`: The file where the cracked private key (n, e) is saved.
 
 ## Example
 
@@ -131,6 +134,12 @@ Here's an example of how to use the RSA implementation:
 
 ```bash
 ./crack_rsa.py
+```
+
+The cracked key generated should be identical to the original private key. The `diff` command on Linux will give a blank output:
+
+```bash
+diff cracked_private_key.pem private_key.pem
 ```
 
 This command sequence will generate RSA keys with a key size of 256 bits, encrypt a message, decrypt the encrypted message, and attempt to crack RSA encryption.

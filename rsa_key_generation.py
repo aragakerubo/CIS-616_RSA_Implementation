@@ -8,9 +8,11 @@
 # 4. Choose an integer e such that 1 < e < φ(n) and gcd(e, φ(n)) = 1; e will be the public exponent.
 # 5. Calculate d such that d * e ≡ 1 (mod φ(n)); d will be the private exponent.
 # 6. The public key is (n, e) and the private key is (n, d).
+# It is standard practice to convert the keys to PEM format for storage and exchange.
 
 import random
 import math
+import base64
 import sys
 
 
@@ -108,6 +110,33 @@ def generate_rsa_keys(bits):
     return (n, e), (n, d)
 
 
+def pem_encode_rsa(modulus, exponent, tag):
+    """
+    Encode an RSA public or private key in PEM format.
+    Args:
+        modulus (int): The modulus of the key.
+        exponent (int): The exponent of the key.
+        tag (str): The tag of the key.
+    Returns:
+        str: The PEM-encoded key.
+    """
+    # Encode the modulus and exponent
+    modulus_bytes = modulus.to_bytes((modulus.bit_length() + 7) // 8, "big")
+    exponent_bytes = exponent.to_bytes((exponent.bit_length() + 7) // 8, "big")
+
+    # Encode the modulus and exponent in base64
+    modulus_b64 = base64.b64encode(modulus_bytes).decode()
+    exponent_b64 = base64.b64encode(exponent_bytes).decode()
+
+    # Create the PEM-encoded key
+    pem = f"-----BEGIN {tag} KEY-----\n"
+    pem += f"{modulus_b64}\n"
+    pem += f"{exponent_b64}\n"
+    pem += f"-----END {tag} KEY-----"
+
+    return pem
+
+
 # Main function
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -118,16 +147,17 @@ if __name__ == "__main__":
     print("Public key (n, e):", public_key)
     print("Private key (n, d):", private_key)
 
-    with open("public_key.txt", "w") as f:
-        f.write(str(public_key[0]))
-        f.write("\n")
-        f.write(str(public_key[1]))
-        f.write("\n")
+    pem_encoded_public_key = pem_encode_rsa(
+        public_key[0], public_key[1], "PUBLIC"
+    )
+    pem_encoded_private_key = pem_encode_rsa(
+        private_key[0], private_key[1], "PRIVATE"
+    )
 
-    with open("private_key.txt", "w") as f:
-        f.write(str(private_key[0]))
-        f.write("\n")
-        f.write(str(private_key[1]))
-        f.write("\n")
+    with open("public_key.pem", "w") as f:
+        f.write(pem_encoded_public_key)
 
-    print("Keys saved in public_key.txt and private_key.txt")
+    with open("private_key.pem", "w") as f:
+        f.write(pem_encoded_private_key)
+
+    print("Keys saved in public_key.pem and private_key.pem.")
