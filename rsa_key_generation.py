@@ -98,6 +98,9 @@ def generate_rsa_keys(bits):
 
     d = modinv(e, phi)
 
+    print("p:", p)
+    print("q:", q)
+    print("n:", n)
     print("phi:", phi)
     print("e:", e)
     print("d:", d)

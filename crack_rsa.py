@@ -101,7 +101,7 @@ def crack_rsa(n, e):
     # Calculate the private exponent
     d = modinv(e, phi)
 
-    return d, p, q
+    return phi, d, p, q
 
 
 # Main function
@@ -113,8 +113,9 @@ if __name__ == "__main__":
         e = int(file.readline())
 
     # Crack the RSA keys
-    d, p, q = crack_rsa(n, e)
+    phi, d, p, q = crack_rsa(n, e)
     print("Cracked private key:")
+    print("phi:", phi)
     print("p:", p)
     print("q:", q)
     print("d:", d)
