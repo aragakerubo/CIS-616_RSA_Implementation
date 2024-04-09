@@ -59,7 +59,13 @@ if __name__ == "__main__":
 
     # The encrypted message
     with open("encrypted_message.txt", "r") as file:
-        c = [int(x) for x in file.readline()[1:-2].split(", ")]
+        encoded_c_b64 = file.readline().strip()
+
+    # Decode the base64 string
+    c = list(
+        map(int, base64.b64decode(encoded_c_b64).decode()[1:-1].split(", "))
+    )
+    print("Encrypted message:", c)
 
     # Decrypt the message
     message = [decrypt(c[i], d, n) for i in range(len(c))]

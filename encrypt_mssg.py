@@ -46,6 +46,11 @@ def string_to_int(s):
 
 # Main function
 if __name__ == "__main__":
+    # Check
+    if not len(sys.argv) > 1:
+        print("Usage: python encrypt_mssg.py <message>")
+        sys.exit(1)
+
     # The public key (n, e)
     # Read the public key from the file
     with open("public_key.pem", "r") as file:
@@ -72,10 +77,14 @@ if __name__ == "__main__":
     # Encrypt the message
     c = [encrypt(message_char, e, n) for message_char in m]
 
+    # Convert the encrypted message to a base64 string
+    c = str(c)
+    encoded_c_b64 = base64.b64encode(c.encode()).decode()
+
     # Print the encrypted message
-    print("Encrypted message:", c)
+    print("Encrypted message:", encoded_c_b64)
 
     # Write the encrypted message to a file
     with open("encrypted_message.txt", "w") as file:
-        file.write(str(c))
+        file.write(encoded_c_b64)
         file.write("\n")
