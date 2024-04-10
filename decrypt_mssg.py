@@ -65,7 +65,7 @@ if __name__ == "__main__":
     c = list(
         map(int, base64.b64decode(encoded_c_b64).decode()[1:-1].split(", "))
     )
-    print("Encrypted message:", c)
+    # print("Encrypted message:", c)
 
     # Decrypt the message
     message = [decrypt(c[i], d, n) for i in range(len(c))]
