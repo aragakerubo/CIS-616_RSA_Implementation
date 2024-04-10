@@ -69,7 +69,7 @@ if __name__ == "__main__":
         e = int.from_bytes(e, byteorder="big")
 
     # The message to encrypt
-    message = sys.argv[1]
+    message = " ".join(sys.argv[1:])
 
     # Convert the message to an integer list
     m = [string_to_int(message_char) for message_char in message]
