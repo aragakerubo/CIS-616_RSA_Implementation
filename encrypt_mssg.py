@@ -79,10 +79,11 @@ if __name__ == "__main__":
 
     # Convert the encrypted message to a base64 string
     c = str(c)
+    print("Encrypted message before encoding:", c)
     encoded_c_b64 = base64.b64encode(c.encode()).decode()
 
     # Print the encrypted message
-    print("Encrypted message:", encoded_c_b64)
+    print("Encrypted message after encoding:", encoded_c_b64)
 
     # Write the encrypted message to a file
     with open("encrypted_message.txt", "w") as file:
