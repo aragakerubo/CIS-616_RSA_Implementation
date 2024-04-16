@@ -136,6 +136,12 @@ Here's an example of how to use the RSA implementation:
 ./crack_rsa.py
 ```
 
+You can use the `time` command to track how long it takes to crack a key
+
+```bash
+time ./crack_rsa.py
+```
+
 The cracked key generated should be identical to the original private key. The `diff` command on Linux will give a blank output:
 
 ```bash

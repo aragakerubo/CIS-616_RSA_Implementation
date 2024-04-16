@@ -148,5 +148,5 @@ if __name__ == "__main__":
         file.write(f"{exponent_b64}\n")
         file.write("-----END PRIVATE KEY-----")
 
-    print("Private key written to cracked_private_key.txt.")
+    print("Private key written to cracked_private_key.pem.")
     print("Done.")
